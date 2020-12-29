@@ -86,7 +86,6 @@ Click on the specific link below for each of the respective chat types. Then you
 
 1. ### Create [ChatController]({{'/docs/chat-configuration/extra/chatcontroller' | relative_url}})
 
-{: .no_toc }
     The ChatController enables creating and controling he different chats.
     The chat type is defined by the Account provided at chat creation.
 
@@ -102,8 +101,7 @@ Click on the specific link below for each of the respective chat types. Then you
     ```
 ---
 
-2. ### Add the chat fragment to your activity.
-{: .no_toc }
+2. ### Add the chat fragment to your activity
 
     Implement the ChatLoadedListener interface and pass it in the `ChatController.Builder` build method.   
     Once the chat build succeeded and the fragment is ready to be displayed, `onComplete` will be called with the fragment on the result. 

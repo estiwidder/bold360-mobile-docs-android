@@ -30,4 +30,5 @@ This guide assumes that you have the necessary android development skills to bui
 
 > *If you're a Bold customer, please contact your Bold Customer Success Manager to help facilitate the use of this component.* 
 {: .mt-10} 
+End
 

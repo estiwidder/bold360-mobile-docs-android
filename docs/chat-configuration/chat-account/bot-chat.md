@@ -6,7 +6,7 @@ grand_parent: Chat Configuration
 nav_order: 1
 ---
 
-# Chat with AI <sup>chatbot</sup> {{site.data.vars.need-review}}
+# Bold AI chatbot <sup>chatbot</sup> {{site.data.vars.need-review}}
 {: .no_toc}
 
 ## Table of contents
@@ -18,15 +18,14 @@ nav_order: 1
 ---
 
 ## Overview
-The SDKs chat with AI bridges your APP with the conversational platform of Bold360 ai. Provides a messaging-based user experience in which the Bold360 ai engine gathers information from the customer in a way similar to what a human agent would do in a regular conversation. Based on customer input and the engine's search capabilities, the Conversational Bot provides the customer relevant information.
+The SDKs chat with AI bridges your APP with the conversational platform of Bold360 ai. This platform enables you to provide a messaging-based user experience similar to that of a conversation with a human agent. The platform will provide app users with the most suitable information based on the users input and contextual information it gathers.
 {: .overview}
 
-The main key for creating a chat is the account.
+The chat type is defined by the account type configured in the SDK.
 
 ## BotAccount
-Use this account to create chat sessions with AI.
-
-With the account you can configure the chatbot that will be created, provide extra details when needed and define other configurations for the chat session.
+Set the BotAccount for a Bold AI chat.
+This ccount enables to create the chatbot and provide additional details and configurations required for the chat session.
 
 ### Creating account
 
@@ -35,13 +34,13 @@ val account = BotAccount(API_KEY, ACCOUNT_NAME,
                         KNOWLEDGE_BASE, SERVER)
 ```  
 
-- API_KEY - As was configured to your account.
-- ACCOUNT_NAME <sub>[mandatory]</sub> - As was configured to your account.
-- KNOWLEDGE_BASE <sub>[mandatory]</sub> - The knowledge base that should be used for this chat.
-- SERVER <sub>[mandatory]</sub> - As was configured to your account.
+- API_KEY - Configured in your account and should be provided by an account administrator.
+- ACCOUNT_NAME <sub>[mandatory]</sub> - Configured in your account and should be provided by an account administrator.
+- KNOWLEDGE_BASE <sub>[mandatory]</sub> - The knowledge base that holds the information to be provided to the app users in this chat.
+- SERVER <sub>[mandatory]</sub> - Configured in your account and should be provided by an account administrator.
 
-### Configure UserId
-The UserId is used for reports and analitics. UserId should be managed and applied by the application on the chat creation, if not provided, the SDK creates a new id. In order to relate analitic content to the same user, the same UserId should be provided.
+### Define a unique User id
+The UserId property is the unique identifier for a user to be used mainly for analytics, to accuratly track and analyze usage data. The UserId should be set by the application upon chat creation. In case the UserID is not provided by the application, the SDK creates a new id. In order to get the most out of the Bold analytics platform, a unique identified should be assign to a unique user.
 
 ```kotlin 
 val account = BotAccount(...).apply{

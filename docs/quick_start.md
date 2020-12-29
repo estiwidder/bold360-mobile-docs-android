@@ -4,7 +4,7 @@ title: Quick Start
 nav_order: 2
 ---
 
-# Quick start
+# Quick Start
 {: .no_toc }
 
 ## Table of contents
@@ -15,7 +15,7 @@ nav_order: 2
 
 ---
 
-Use this Quick Start guide to get you up and running with a working AI or live chat hosted by your App.   
+The Quick Start guide provides the steps for embeddinga basic AI or live chat in your app.   
 
 ## System Requirements  
 
@@ -25,13 +25,13 @@ Use this Quick Start guide to get you up and running with a working AI or live c
 * The SDK supports devices with API level 16 or higher. <sub>**(since version 3.5.0**)</sub>
 
 
-## Set up the SDK on your App.
+## SDK Set up 
 {: .d-inline-block }
 
 1. ### Import SDK dependencies 
     {: .no_toc .strong-sub-title}   
     
-    [Check here for latest SDK version and needed dependencies](https://developer.bold360.com/help/EN/Bold360API/Bold360API/ReleaseNotesAndroid.html) 
+    [Check here for the latest SDK version and needed dependencies](https://developer.bold360.com/help/EN/Bold360API/Bold360API/ReleaseNotesAndroid.html) 
 
     
 2. ### Extra configurations on build.gradle:
@@ -60,16 +60,18 @@ Use this Quick Start guide to get you up and running with a working AI or live c
 ---
 
 > ! Now you are ready to integrate and create some chats.
-{: .no_toc .strong-sub-title}
 
 ---
 
-## Create and start a chat  
+## Define chat type   
 {: .d-inline-block }
 
-Follow the next steps to create and start a chat.
+The Android SDK enables embedding different types of chats: AI, live or messaging. The Account defines the chat type.
+Click on the specific link below for each of the respective chat types. Then you will be able to advance to starting a chat. 
 
-1. ### Create an Account
+### Create an Account
+{: .d-inline-block }
+
     - [Create `BotAccount` for chat with AI]({{'/docs/chat-configuration/chat-account/bot-chat#botaccount' | relative_url}})
     {: .no_toc }
     
@@ -79,10 +81,14 @@ Follow the next steps to create and start a chat.
     - [Create `AsyncAccount` to start a messaging chat]({{'/docs/advanced-topics/messaging-chat#asyncaccount' | relative_url}})
     {: .no_toc }  
 ---
+## Start a chat  
+{: .d-inline-block }
 
-2. ### Create [ChatController]({{'/docs/chat-configuration/extra/chatcontroller' | relative_url}})
-    With the ChatController one can create and control multiple chats.
-    The chat type is configured by the Account that is provided on chat creation.
+1. ### Create [ChatController]({{'/docs/chat-configuration/extra/chatcontroller' | relative_url}})
+
+{: .no_toc }
+    The ChatController enables creating and controling he different chats.
+    The chat type is defined by the Account provided at chat creation.
 
     ```kotlin
     val chatController = ChatController.Builder(context)
@@ -96,7 +102,8 @@ Follow the next steps to create and start a chat.
     ```
 ---
 
-3. ### Add the chat fragment to your activity.
+2. ### Add the chat fragment to your activity.
+{: .no_toc }
 
     Implement the ChatLoadedListener interface and pass it in the `ChatController.Builder` build method.   
     Once the chat build succeeded and the fragment is ready to be displayed, `onComplete` will be called with the fragment on the result. 

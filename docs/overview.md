@@ -18,15 +18,11 @@ permalink: /docs/overview
 ---
 
 ## About
-**Bold mobile SDK for android** is a native android SDK, intended to be used by Apps developed for android devices usage.   
-Native SDK ensures usability by native applications and benefits from the operating system software features. 
+**Bold mobile SDK for android** is a native android SDK, that enables embedding live and AI chats to your mobile applications.   
 
 ## Features
-Create and integrate AI and live chats to run under your App.
-Customize your chat look to meet your need.
-
-## Intended Audience
-This guide assumes that you have the necessary android development skills to build and compile advanced applications using Android Studio.  
+Provide your app users with Conversational AI chatbots to assist customers immediately which can be transitioned to agents seamlessly if needed.
+Customize your chat UI to match your needs.
 
 > *If you're a Bold customer, please contact your Bold Customer Success Manager to help facilitate the use of this component.* 
 {: .mt-10} 

@@ -72,15 +72,15 @@ Click on the specific link below for each of the respective chat types. Then you
 ### Create an Account
 {: .d-inline-block }
 
-    - [Create `BotAccount` for chat with AI]({{'/docs/chat-configuration/chat-account/bot-chat#botaccount' | relative_url}})
+- [Create `BotAccount` for chat with AI]({{'/docs/chat-configuration/chat-account/bot-chat#botaccount' | relative_url}})
+    {: .no_toc }    
+- [Create `BoldAccount` for live chat with agent]({{'/docs/chat-configuration/chat-account/bold-chat#boldaccount' | relative_url}})
     {: .no_toc }
-    
-    - [Create `BoldAccount` for live chat with agent]({{'/docs/chat-configuration/chat-account/bold-chat#boldaccount' | relative_url}})
-    {: .no_toc }
-        
-    - [Create `AsyncAccount` to start a messaging chat]({{'/docs/advanced-topics/messaging-chat#asyncaccount' | relative_url}})
+- [Create `AsyncAccount` to start a messaging chat]({{'/docs/advanced-topics/messaging-chat#asyncaccount' | relative_url}})
     {: .no_toc }  
+
 ---
+
 ## Start a chat  
 {: .d-inline-block }
 

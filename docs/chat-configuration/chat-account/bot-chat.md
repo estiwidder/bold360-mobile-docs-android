@@ -18,14 +18,14 @@ nav_order: 1
 ---
 
 ## Overview
-The SDKs chat with AI bridges your APP with the conversational platform of Bold360 ai. This platform enables you to provide a messaging-based user experience similar to that of a conversation with a human agent. The platform will provide app users with the most suitable information based on the users input and contextual information it gathers.
+Bold360 Android SDK enables your app to use the Bold360 ai conversational platform. This platform enables you to provide a messaging-based user experience similar to that of a conversation with a human agent. The platform will provide app users with the most suitable information based on the users input and contextual information it gathers.
 {: .overview}
 
 The chat type is defined by the account type configured in the SDK.
 
 ## BotAccount
 Set the BotAccount for a Bold AI chat.
-This ccount enables to create the chatbot and provide additional details and configurations required for the chat session.
+This account create the chatbot and provide details and configurations required for establishing a chat session.
 
 ### Creating account
 
@@ -57,7 +57,7 @@ override fun update(account: AccountInfo) {
 
 
 ### Configure Contexts
-If your account supports context based answers, you may want to configure those on your account to be used during the chat.
+In case you want to provide context based answers, the contexts need to be configured on your account as described below.
 
     ```kotlin
     // Create contexts map 
@@ -74,7 +74,7 @@ If your account supports context based answers, you may want to configure those 
     ```
 
 ### Configure [Initialization Entities]({{'/docs/advanced-topics/entities-and-personal-info#initentities' | relative_url}})
-Custom Entities, are pices of information that should be provided by the application/user during the chat, instead of using a form, we use the conversation to gather those details.
+With Custom Entities, information gatheringcan be done as an interactive conversation, instead of asking your user to fill in a form.
 Some entities are static and are not going to change during the chat, therefore can be provided on the chat creation. Those entities are provided on the account.
 
  ```kotlin
@@ -84,8 +84,7 @@ Some entities are static and are not going to change during the chat, therefore 
  ---
 
 ## AI Chat continuity
-Chatbot continuity has no special meaning as in live chat. 
-Previous conversationId can be provided, for the initiated chat session, and if valid will be used, otherwise a new chat session will be created.
+As opposed to a live chat, in a chat with a chatbot, the chat continuity may not be very significant. However, the ID of a previous conversation (conversationId) can be provided, for the initiated chat session, and if valid it will be used; otherwise a new chat session will be created.
 The created  conversationId is available for Hosting app managment via [`AccountInfoProvider.update`]({{'/docs/chat-configuration/extra/account-info-provider#account-update' | relative_url}}).
 ```kotlin 
 override fun update(account: AccountInfo) {
@@ -98,7 +97,7 @@ override fun update(account: AccountInfo) {
 
 ## How to
 - ### Customize and override chat [Welcome Message]({{'/docs/chat-configuration/extra/welcome-message' | relative_url}})
-  Bold360 console configured welcome message article, can be overridden, or provided if none configured, on the account. 
+  The welcome article defined in the Bold360 console , can be specifically provided or overridden in the account. 
 
     ```kotlin
     botAccount.welcomeMessage = ARTICLE_ID 

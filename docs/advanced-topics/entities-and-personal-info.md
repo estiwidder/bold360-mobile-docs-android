@@ -18,17 +18,24 @@ nav_order: 9
 ---
 
 ## Overview
-The SDK provides the bridge to pass user specific information to the BOT on chat start and while processing responses to user queries, which demands more details from the user, during the chat.
+Entities enable to turn data into smart chatbot conversations. Entities essentially serve as a database for the information that the bot needs to answer your customers' questions. The SDK provides the bridge to pass this data to the BOT on chat start and while processing responses to user queries.
+
+## COMMENT: THIS IS THE REFERENCE IN THE BOLD360AI SUPPORT SITE: https://support.bold360.com/bold360/help/working-with-entities
+
 {: .overview}
 
-There are 2 types of personal information
+Personal information can be categorized either as entities initialization or as data that is required to provide personalized answers to the user.
 
 <a id="initentities"/>
+
 ## Initialization entities
+## COMMENT: ARE THESE DATA ENTITIES?
 
-Predefined data values that can be provided for the whole chat session and are not being changed dynamically (exp: ids, keys, etc).
+Entity values can be provided for the entire chat session and are not changed dynamically (exp: ids, keys, etc).
 
-### How To use
+## COMMENT: WHAT DOES "NOT CHANGED DRAMATICALLY" MEANS?
+
+### How to initialize chat entities
 
 1. Create the initialization entities map
 
@@ -44,7 +51,7 @@ Predefined data values that can be provided for the whole chat session and are n
                         }
    ```
 
-- Note: The `initialization entities` can be also supplied at the [`AccountInfoProvider.provide`]({{'/docs/chat-configuration/extra/account-info-provider#account-provide' | relative_url}}) method as follows:
+- Note: The `initialization entities` can be also supplied by the [`AccountInfoProvider.provide`]({{'/docs/chat-configuration/extra/account-info-provider#account-provide' | relative_url}}) method as follows:
 
     ```kotlin
     override fun provide(account: AccountInfo, callback: Completion<AccountInfo>) {
@@ -54,19 +61,19 @@ Predefined data values that can be provided for the whole chat session and are n
     }
     ```
 
-## Missing entites and Personal information
-
-Dynamically required details. Depends on user query and the article the Bot responses with.
-articles of this sort are configured with a Bold360ai provider which formats the response to contain the entities tag pattern, that are being recognized by the SDK as the needed information (please contect out support for farther information about the [Bold360AI provider](https://support.bold360.com/bold360/help/how-do-i-create-a-csv-provider)).
+## Missing information for personalize responses
+## COMMENT: ARE THESE CUSTOM ENTITIES? THERE IS ALSO AN ISSUE WITH THE TEXT HERE - FOR SOME REASON IT IS SET AS A HYPERLINK.
+These entities are use to dynamically retrieve details from the user details required to personalize the response to the user query.
+These articles contain entities tags within the response which are recognized by the SDK as the missin information needed to properly display the article as intended (refer to  [Bold360AI provider](https://support.bold360.com/bold360/help/how-do-i-create-a-csv-provider) for more information).
 
 - **Missing entites**:    
-  Details that the user is asked to provide before the requested data can be supplied.   
-  The provider which assigned to the article identifies which extra details are needed in order to get a response to a user query. According to the entities that were set to the account, the App is asked to provide thoes details by calling the `EntitiesProvider.provide`.   
+  There may be cases in which the chatbot needs additional data from the user in order to providethe appropriate answer.   
+  The entities defined in the article identify the missisng details required to provide the user with the response. According to the entities set in the account, the app is asked to provide thoes details by calling the `EntitiesProvider.provide`.   
   ##### Missing entities can be, names, account numbers, etc.
 
 - **Personal information**:   
-  Extra user personal info, that may be requested from the App by the SDK regarding a specific entity, in order to provide a response.
-  Needed once the BE provides a response which contains, info needed place holders. The App provided personal info is than used to replace those place holders.
+  This refers to additional personal information related to the user that will be requested in the app by the SDK for  specific entities, to provide a response.
+  This occurs when the response (the artocle) contains placeholders for information. The app provides this personalinformation that is then inserted to the appropriate placeholders.
   ##### Personal information can be, account balance, passport number, etc.
 
 --- 
@@ -76,7 +83,7 @@ articles of this sort are configured with a Bold360ai provider which formats the
 
 ---
 
-### How To use
+### How to provide personal information to entities
 
 1. Create the missing entities array
 
@@ -95,12 +102,13 @@ articles of this sort are configured with a Bold360ai provider which formats the
 3. Implement the `EntitiesProvider` interface.
    At the `EntitiesProvider` there are two `provide` methods for `personal information` and for `missing entities`.
 
-4. Pass the implementation of the `EntitiesProvider` to the `ChatController` at the ChatController creation
+4. Pass the implementation of the `EntitiesProvider` to the `ChatController` upon the ChatController creation
 
     ```kotlin
     ChatController.Builder(getContext()).entitiesProvider(the EntitiesProvider implemintation)...build(...)
     ```
 ---
 
+## COMMENTS: WHAT IS VIEW SAMPLE? DO WE HAVE THIS FOR ALL IMPLEMENTATIONS?
  > view Sample: [`missing entities` and `personal information` usage]({{'/docs/faq/missing-entities-example.md' | relative_url}})
 {: .mt-6}

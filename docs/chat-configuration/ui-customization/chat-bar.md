@@ -19,23 +19,26 @@ nav_order: 6
 ---
 
 ## Overview
-A UI component, which appears over the chat screen, while a live chat is in progress. 
+The chat bar is a UI component that appears on top of the chat screen, during a chat with a live chat. 
 The Chatbar displays the following:
  1. Active agent details - name and avatar.
  2. `End Chat` clickable view to end current live chat.
+ 3. E-mail clickable view to provide an e-mail addressfor automatically sending the chat transcript upon chat end. <sub>(optional)</sub> 
+ ## THE E_MAIL PROPERTIES AND BEHAVIOR NEED TO BE DESCRIBED BELOW IN THE RELEVANT SECTIONS.
+
 {: .overview}
 
 ![]({{'/assets/images/chatbar.png' | relative_url}})
 {: .image-40}
 
 ## How it works
-The UI component data is being updated on chat acceptance and on every operator change indication. 
+The chat bat component data is updated upon chat acceptance and any operator change indication. 
 
-> Currently operator change events are not passed to the hosting app.
-   In order to do so, you can override the SDKs provided `Chatbar`, and pass update events from your implementation.
+> By defauly operator change events are not passed to the hosting app.
+   To pass operator change events to the app, override the SDKs provided `Chatbar`, and pass update events from your implementation.
 
-## UI customization
-- The UI component look can be configured by overriding the [`configure`]({{'/docs/chat-configuration/ui-customization/how-it-works#configure' | relative_url}}) method of `ChatBarCmpUiProvider`.   
+## Chat bar UI customizations
+- The chat bar UI component's display can be customized by overriding the [`configure`]({{'/docs/chat-configuration/ui-customization/how-it-works#configure' | relative_url}}) method of `ChatBarCmpUiProvider`.   
 See `ChatbarCmpAdapter` for available configurations.
     ```kotlin
     ChatUIProvider(this).apply {
@@ -50,16 +53,16 @@ See `ChatbarCmpAdapter` for available configurations.
     }
     ```
 
-- **Overriding agent avatar placeholder image** - can be done, by overriding the image resource on the hosting App resources (resource id - `R.drawable.agent`)
+- **Overriding agent avatar placeholder image** - Override the image resource on the hosting App resources (resource id - `R.drawable.agent`)
 
-- **Remove "end chat" view display** from the chatbar - can be done using `ConversationSettings`.
+- **Remove "end chat" view display** from the chatbar - to remove the end chat button from the chat bar use the  `ConversationSettings` as seen below.
     ```kotlin
     conversationSettings.disableEndLiveChatSupport()
     ```
 
 
-## Custom Chatbar override
-The provided `Chatbar` implementation can be replaced with your custom implementation of `ChatbarComponent.ChatbarViewProvider`, by overriding [`overrideFactory`]({{'/docs/chat-configuration/ui-customization/how-it-works#override' | relative_url}}) property of the `ChatBarCmpUIProvider`. 
+## Custom Chatbar UI
+The default `Chatbar` implementation can be replaced with a custom  implementation of the `ChatbarComponent.ChatbarViewProvider`, by overriding [`overrideFactory`]({{'/docs/chat-configuration/ui-customization/how-it-works#override' | relative_url}}) property of the `ChatBarCmpUIProvider`. 
 ```kotlin
 ChatUIProvider(this).apply {
     chatBarCmpUiProvider.overrideFactory = 

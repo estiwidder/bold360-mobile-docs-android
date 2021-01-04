@@ -27,7 +27,7 @@ nav_order: 3
 ---
 
 ## Readmore indication <sub><sup>(configurable only)</sup></sub>
-- `readmore` indication view is configurable via `ReadmoreAdapter`, as follows:   
+- The `readmore` indication view is configurable via `ReadmoreAdapter`, as follows:   
 
 ```kotlin
 ChatUIProvider(context).apply {
@@ -43,7 +43,7 @@ ChatUIProvider(context).apply {
     }        
 }
 ```
-- `readmore` indication text, is a string resource (`R.string.read_more`), and can be override by the integrating app.
+- The `readmore` text, is a string resource (`R.string.read_more`), and can be overriden by the hosting app.
 
 
 ### Define message length display threshold

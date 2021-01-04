@@ -18,8 +18,8 @@ nav_order: 2
 ---
 
 ## Overview
-Chat features are configured by the various consoles available for every chat type, and by the SDKs pre defined available options.  
-Chat configurations can be controlled by the embbeding App, by passing a customed `ConversatioSettings` object on ChatController creation.
+The different chat settings are configured in the AI and Bold administrative consoles, and apply to any chat type by the SDKs pre defined available options.  
+Chat configurations can be controlled by the embbeding app as well, by passing a customed `ConversatioSettings` object upon the ChatController creation.
 {: .overview}
 
 ```kotlin
@@ -36,23 +36,25 @@ val chatController = ChatController.Builder(context).apply {
 ## Available configurations
 {: .mt-6}
 ### Voice control
-**_voiceSettings_** - Defines the desired voice feature behavior.   
-Voice behavior available for chat, will be configured according to this setting and the available voice behavior supported by the ChatHandler.   
+**_voiceSettings_** - Defines the desired voice behavior.   
+The voice behavior for a chat,is configured by this setting and by the available voice behavior supported by the ChatHandler.   
 
 Available voice behavior options are defined by <u>`VoiceSupport`</u>.   
+##  WHAT IS VOICESUPPORT?
+
 >**None, SpeechRecognition, VoiceToVoice, HandsFreeVoiceToVoice<sub>(currently not supported)</sub>**
 
 {: .mt-8}
 ### Chat transcript request
-Each supported chat is being "recorded" while in progress, to allow passing its transcript, if requested, just before it ends or being escalated.
+Chats with this configuration are "recorded" while in progress, to allow sending the chat transcript, if requested, just before it ends or is escalated.
 Exp: Passing AI chat flow to a live agent, when AI chat is being escalated to a live or messaging chat.
-In order to change and control which chat scope can request the preceding chat records, use the following:
+To manage which chat scope can request sending the chat transcript, use the following:
 ```kotlin
 val conversationSettings = ConversationSettings()
                            .enableChatLogRequest(Requesting_Scope, isEnabled)
 ```
 
-> Exp: In order to enable passing preceding bot chat records to the live agent:
+> Exp: In order to enable passing preceding botchat records to the live agent:
 ```kotlin
 ConversationSettings().enableChatLogRequest(StatementScope.BoldScope, true)         
 ```   
@@ -61,6 +63,8 @@ ConversationSettings().enableChatLogRequest(StatementScope.BoldScope, true)
 
 {: .mt-8}   
 ### Features availability configurations
+##  COMMENT: WHAT ARE THESE PROPERTIES? aRE THEY DESCRIBED SOMEWHERE ELSE?
+
 Enable/Disable/Inspect support of some of the SDKs provided features.
 - Autocomplete - Configure and Inspect support for AI chats
 

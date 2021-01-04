@@ -22,19 +22,19 @@ has_toc: false
 ---
 
 ## Overview
-Displaying suggestions for the user to select from, while the user types his message. The user than can select from the suggested articles/queries or continue typing his message.   
-Selected suggestion will automatically be sent to the BE for response.
+Autocomplete refers to displaying comptetion suggestions predited by the system, while the user is typing a message.  The user can select from the suggested text or continue typing his message.   
+Selected suggestion will be sent as the user's message and the response will then be displayed.
 {: .overview }
 
 
 ## AI autocomplete
-_Autocomplete feature is available only for AI chats._
+_Autocomplete feature is available only for chats with chatbots._
 {: .fs-4 .fw-300 }
 
-The presented suggestions are fetched from the BE while the user types his query.   
+The presented suggestions are retireived from the intent  phrases in the relevant knowledgebase.   
 
-### Control availability
-Autocomplete feature support status can be configured on bold360ai console.
+### Enabling Autocomplete
+The autocomplete capability can be enabled in bold360ai console.
 - <details close markdown="block">
   <summary>Account level configuration</summary>
 

@@ -6,6 +6,7 @@ nav_order: 3
 ---
 
 # Chat Restoring {{site.data.vars.need-work}}
+## WHAT IS THE PURPOSE OF THIS RESTORATION? WHEN SHOULD THIS BE USED? I DID NOT REVIEW. NEED TO UNDERSTAND FIRST.
 {: .no_toc }
 
 ## Table of contents

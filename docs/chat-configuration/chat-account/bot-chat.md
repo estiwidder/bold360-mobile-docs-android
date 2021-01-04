@@ -18,14 +18,16 @@ nav_order: 1
 ---
 
 ## Overview
-Bold360 Android SDK enables your app to use the Bold360 ai conversational platform. This platform enables you to provide a messaging-based user experience similar to that of a conversation with a human agent. The platform will provide app users with the most suitable information based on the users input and contextual information it gathers.
+Bold360 Android SDK enables provide an AI based messaging-based user experience similar to that of a conversation with a human agent. The platform will provide the app users with the most suitable information based on the users input and contextual information available.
 {: .overview}
 
 The chat type is defined by the account type configured in the SDK.
 
+# COMMENT: THIS ENTIRE SECTION ALREADY EXISTS IN A DIFFERENT SECTION> I WOULD ADD A REFERENCE> OTHERWISE WE WILL NEED TO MAINTAIN DUPLICATE TEXTS
+
 ## BotAccount
 Set the BotAccount for a Bold AI chat.
-This account create the chatbot and provide details and configurations required for establishing a chat session.
+This account creates the chatbot and provide details and configurations required for establishing a chat session.
 
 ### Creating account
 

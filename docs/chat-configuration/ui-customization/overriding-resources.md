@@ -8,6 +8,7 @@ nav_order: 10
 ---
 
 # Overriding Resources {{site.data.vars.need-work}}
+# COMMENT: ISN'T THIS PART OF A DIFFERENT ARTICLE?
 {: .no_toc }
 
 ## Table of contents

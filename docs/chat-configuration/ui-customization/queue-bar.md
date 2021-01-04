@@ -19,8 +19,8 @@ nav_order: 7
 ---
 
 ## Overview
-On live chat creation, if all available agents are occupied to their capacity, the chat will be added to a waiting queue.
-The chat will be promoted in the queue, until position 0, indicating that the chat is no longer in the queue and is waiting for an agent acceptance.
+A live chat waiting queue managed in case all available agents are at full capacity.
+The chat will be promoted whitin the queue, up to position 0, indicating that the chat is no longer in the queue and is waiting for an agent to acept the chat.
 {: .overview}
 
 ![]({{'/assets/images/queuebar.png' | relative_url}})
@@ -28,15 +28,15 @@ The chat will be promoted in the queue, until position 0, indicating that the ch
 
 
 While in [queue state]({{'/docs/chat-configuration/tracking-events/chat-lifecycle#inqueue' | relative_url}}), the user can choose to cancel the chat.   
-Chat canceling is handled as unavailable, and the user will be presented with unavailability form or message, according to the chat window configurations. 
+A chat that is canceled will be handled as an unavailable chat, therefore the user will be presented with unavailability form or message, according to the chat window configurations. 
 
 ![]({{'/assets/images/console-unavailability.png' | relative_url}})   
 {: .image-70}
 
 ---
 
-## Admin configurations
-The following should be enabled, in order to have chats queue support, and to be notified of chat position in queue.
+## Queue support configurations
+In order to support a chat queue and to be nitofied on chat position, the following should be enabled in the administrative console. 
 
 1. Automatic distribution  
    {: .light-title}
@@ -49,13 +49,12 @@ The following should be enabled, in order to have chats queue support, and to be
 
 ---
 
-## Customize Queue Component
-Queue position UI display is provided by the SDK, and can be customized by configuration settings or by an overriding custom queue component implementation.
+## Queue Component customization
+The queue position UI display provided by the SDK can be customized by configuration settings or by an overriding custom queue component implementation.
 
 {: .mt-8}
 ### Customizing by Configuration
-Override `ChatUIProvider.queueCmpUIProvider.configure` method, in order to apply UI customizations to the provided SDKs UI component.   
-By overridding the `configure` method you can set the component background, define the text style, the location of the bar on the screen, etc.
+Override the `ChatUIProvider.queueCmpUIProvider.configure` method, in order to apply UI customizations properties to the default SDKs UI component, including: background, text style, and the bar location on the screen.
 
 ```kotlin
 ChatUIProvider(context).apply {
@@ -76,8 +75,8 @@ ChatUIProvider(context).apply {
 ```
 
 {: .mt-8}
-### Custom queue component
-Use your own custom component instead of the SDKs provided one.   
+### Defining a custom queue component
+Replace the default queue component with a proprietary one component.   
 Create your custom `QueueFactory` implementation and apply it to the ui provider `overrideFactory` property:
 
 ```kotlin
@@ -88,12 +87,12 @@ queueCmpUIProvider.overrideFactory = object : QueueCmpUIProvider.QueueFactory {
     }
 ```
 
-##### Update position display
+##### Queue position display update
 {: .strong-sub-title}
 
-In order to be notified of queue position changes on your custom queue component, your component implementation should provide a `Notifiable` implementation which declares `Notifications.QueuePosition` notification as one of it's notifications.
+To be notified of queue position changes on your custom queue component, the propriaetary component should provide a `Notifiable` implementation which declares `Notifications`. Set the `QueuePosition` notifications.
 
-> Once a UI component is created and added to the chat, if it provides an implementation of `Notifiable`, by `getNotifier` method, the implementation is automatically being registered to its listed notifications.
+> Once a UI component is created and added to the chat, and it contains an implementation of `Notifiable`, by the  `getNotifier` method, the implementation is automatically  registered to its listed notifications.
 
 ```kotlin
 class MyQueueImp(context: Context) : QueueCmpAdapter {
@@ -120,18 +119,18 @@ class MyQueueImp(context: Context) : QueueCmpAdapter {
 }
 ```
 
-##### Cancel chat 
+##### Cancelling a chat 
+## DOES THIS REFFER TO CNCELING A CHAT IN GENERAL OR WHEN IT IS IN QUEUE?
 {: .strong-sub-title}
 
 In order to activate chat cancel (end) from within your custom component do the following:
-1. Implement the `setListener` method   
-Save the provided function implementation, to be used for event passing from your UI component.
+1. Implement the `setListener` method and save the provided function implementation, to be used for event passing from the proprietary UI component.
 ```kotlin
 override fun setListener(listener: ((CmpEvent) -> Unit)?) {
-    this.onCmpEvent = listener // save listener for later use
+    this.onCmpEvent = listener // save the listener for later use
 }
 ```
-2. When the user chooses to cancel the chat, invoke the saved listener with a CmpEvent, identified with the queue UI component type `ComponentType.QueueStatusCmp` and with `CmpEvent.Activated` state, as follows:
+2. When the user chooses to cancel the chat, invoke the saved listener with a `CmpEvent`, identified with the queue UI component type `ComponentType.QueueStatusCmp` and with `CmpEvent.Activated` state, as follows:
 
 ```kotlin
 this.onCmpEvent?.invoke(
@@ -141,13 +140,14 @@ this.onCmpEvent?.invoke(
 ---
 
 ## Cancel chat view 
-The Queue component allows the user to cancel the chat while in queue state, using the `Cancel chat` view.   
+The Queue component enables the user to cancel a chat while in queue state, by the `Cancel chat` view.   
 
 {: .mt-6}
 Enable/Disable display
 {: .strong-sub-title}   
 
 `Cancel chat` view display, depends on `ChatUIProvider.queueCmpUIProvider.queueUIConfig.enableCancel` configuration, which defaults to `true`.   
+
 Do the following in order to change that configuration:
 ```kotlin
 ChatUIProvider(context).apply {
@@ -160,14 +160,15 @@ ChatUIProvider(context).apply {
 Configure cancel message
 {: .strong-sub-title}   
 
-`Cancel chat` displayed text, is customizable via the chat window customizations. You can change it's default value and add more branding languages values by setting the text for `api#chat#unavailable_email` branding key.   
+`Cancel chat` displayed text, is customizable via the chat window customizations. You can change the default value and add more branding languages values by setting the text for `api#chat#unavailable_email` branding key.   
 > The displayed text is branded according to the chat selected language.
 
 ---
 
 ## Listening to queue position changes
-Queue position changes can be listened to by a [custom UI component](#update-position-display), as described before.    
-In order to listened to position changes not from a custom UI implementation, you need to subscribe to the `Notifications.QueuePosition` notification using the `ChatController`.
+Queue position changes can be listened to by a [custom UI component](#update-position-display), as described before. 
+## I WOULD ADD A LINK OR REFERNCE.   
+to listen to position changes not from a custom UI implementation, there is a  need to subscribe to the `Notifications.QueuePosition` notification using the `ChatController`.
 
 ```kotlin
 chatController.subscribeNotifications(NotifiableImpl, 

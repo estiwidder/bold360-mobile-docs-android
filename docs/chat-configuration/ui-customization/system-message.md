@@ -7,7 +7,7 @@ grand_parent: Chat Configuration
 nav_order: 5
 ---
 
-# System Message {{site.data.vars.need-work}}
+# System Messages {{site.data.vars.need-work}}
 {: .no_toc }
 
 ## Table of contents
@@ -22,19 +22,19 @@ nav_order: 5
 ...
 
 ## Constomization
-Currently system messages look can be changed only by `override`.
+Currently the system messages display can only be overriden by `override`.
 
-- ### Customize by override layout resouce   
+- ### Customize by overriding layout resouce   
   
   Create your own layout resources with the following names:   
   - Regular messages: system_message_regular (inner textview should keep SDK known id: message_textview)
   - Removable messages: system_message_removable (inner textview should keep SDK known id: message_textview)
 
-- ### Customize by override SystemUIProvider factory
+- ### Customizing by override SystemUIProvider factory
   {: .mt-5}
     1. _Implement SystemFactory:_ 
-        - override `removableSystemInfo` method, for changing the layout for the removable system messages (appears for a specific state and than are removed from the chat)
-        - override `info` method for changing the regular messages display.
+        - Override the `removableSystemInfo` method to change the removable system messages layout (appears for a specific state and then removed from the chat)
+        - Override the `info` method to change the regular messages display.
 
         
     2. _Set `SystemUIProvider.overrideFactory` with your implementation._    

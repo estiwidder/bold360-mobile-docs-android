@@ -19,11 +19,13 @@ nav_order: 2
 ---
 
 ## Overview
-Usually appears at the bottom of the chat screen. Contains the users typed/recorded message, until it was sent.   
+The user's input field is usually displayed at the bottom of the chat screen and displays the users typed/recorded message, until it is sent.   
 The behavior and functionality of the input field is defined by the active chat type.   
 {: .overview}
 
 > Exp: The **upload icon** will appear only on live chats and only if was enabled by configuration.
+
+## WHAT IS EXP?
 
 ## Available features
 - Typing and sending messages 
@@ -31,8 +33,8 @@ The behavior and functionality of the input field is defined by the active chat 
 - [Voice recording and readout control](/docs/advanced-topics/voice)
 - [File upload](/docs/advanced-topics/file-upload) on live chats
 
-### Configure features
-Some of the available features, can be configured by the hosting App. Using `ConversationSettings` object, that can be provided on ChatController creation, you can configure the following:
+### Configuring input field features
+Some of the available features, can be configured by the hosting app. The following configurations can be done by using the `ConversationSettings` object, that can be provided at ChatController creation:
 
 - [`voiceSettings(VoiceSettings)`](./docs/chat-configuration/chat-settings#voice-control)
 
@@ -40,17 +42,15 @@ Some of the available features, can be configured by the hosting App. Using `Con
 
 ---
 
-## send  button
-...
+#### Send button
 
-### Send UI override
-In order to override the send view set `ChatUIProvider.chatInputUIProvider.sendCmpUIProvider.overrideFactory` with your view factory.
-> Custom implementation must implement `InputControlersHandler`
-
+In order to override the send view set the `ChatUIProvider.chatInputUIProvider.sendCmpUIProvider.overrideFactory` with your view factory.
+> Custom implementation must implement the`InputControlersHandler`
 
 ---
 
 ## Hint configuration
+##  COMMENT: WHAT ARE HINTS? I DID NOT REVIEW THIS SINCE WAS NOT SURE WHAT THIS IS. 
 
 - Hint configuration for AI chats is done on the [bold360ai console]({{'/assets/images/ai-hint-config.png' | relative_url}}).
   > Escalated chats will not effect the AI configured hint.

@@ -25,6 +25,6 @@ np_toc: true
 
 ## Overview
 Chat creation starts with account creation.   
-The created account defines the chat type that will be created.
-Some chat session configurations can be provided on account level. Those configurations can define chat continuity, session details, language, etc.
+The type of account defines the chat type.
+The chat account holds  part of the chat session configurations, including: chat continuity, session details, language, etc.
 {: .overview}

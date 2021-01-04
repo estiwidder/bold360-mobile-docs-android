@@ -22,15 +22,15 @@ has_toc: false
 ---
 
 ## Overview
-Statistic tool, enables to review the quality of AI response performance, knowledge base content and get some idea of customers needs in order to improve customer service.
+Feedback is a mechanism to collect user's feedback on the quality of AI response performance, knowledge base content and by this understand better their needs and enhance the service user experience.
 {: .overview }
 
-The Feedback feature is available only for AI chats.   
+The Feedback feature is available only for chats chatbots.   
 
-There are 2 types of feedback that can be configured, but only one can be active.
+Bold enables choosing out of two types of feedback.
 
-- [Timed feedback](./timed-feedback) - A configured periodic give feedback message, received as a response to an SDK timed feedback query to the BE.  
+- [Timed feedback](./timed-feedback) - A"provide feedback" meesage displayed to the user at a pre-configured period, then received as a response to an SDK timed feedback query to Bold server.  
 The Feedback applies on chat session as total.
 
-- [Instant Feedback](./instant-feedback) - Each incoming message, that is available for feedback, is attached with an SDK's feedback component.   
+- [Instant Feedback](./instant-feedback) - Each incoming message is available for feedback and  attached with an SDK's feedback component.   
 The feedback applies to the specific response/article it was attached to.

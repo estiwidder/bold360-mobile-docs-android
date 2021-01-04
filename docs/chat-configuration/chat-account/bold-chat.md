@@ -26,7 +26,6 @@ Both chat parties should be connected during the chat session.
 
 ## BoldAccount
 Use this account to create live chat sessions with an agent.
-
 With the account you can configure and set chat and user details, set session parameters, like destin department, preffered language, etc.
 
 ### Creating account

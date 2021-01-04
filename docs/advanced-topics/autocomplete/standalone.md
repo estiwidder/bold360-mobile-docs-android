@@ -20,10 +20,10 @@ nav_order: 2
 
 ## Overview
 The SDK provides a standalone AI autocomplete component, called `BotAutocompleteFragment`.   
-This UI component can be located in your fragment, activity, etc, and will automatically connect to a bot AI source, for autocomplete suggestions fetching.
+This UI component can be included in your fragment, activity, etc, and will automatically connect to a bot AI source, for autocomplete suggestions fetching.
 {: .overview }
 
-The standalone component support self state restoring on device rotation mode changes.   
+The standalone component supports self state restoring upon device rotation mode changes.   
 Suggestions will not be displayed while the device is on `Landscape mode`. Text changes will be registaered and the relevant suggestions will be displayed once the device is back on `Portrait mode`. 
 
 ---
@@ -34,7 +34,7 @@ Suggestions will not be displayed while the device is on `Landscape mode`. Text 
 `BotAutocompleteFragment` uses `BotCompletionViewModel` as its parameters source.
 `BotCompletionViewModel` should be obtained from `ViewModelProvider`, and configured with the autocomplete parameters as needed.
 
-- Obtain `BotCompletionViewModel` {: .strong-sub-title}   
+- Obtaining `BotCompletionViewModel` {: .strong-sub-title}   
   When obtaining the `BotCompletionViewModel`, use the containing activity as the source for the ViewModelProvider.   
  
   ```kotlin
@@ -42,10 +42,10 @@ Suggestions will not be displayed while the device is on `Landscape mode`. Text 
                                   get(BotCompletionViewModel::class.java)
   ```
 
-- Apply autocomplete parameters values {: .strong-sub-title}   
+- Applying the autocomplete parameters values {: .strong-sub-title}   
   Once you have the `BotCompletionViewModel` instance, set its properties as needed, for the autocomplete functionality and display.
 
-    - `botChat`<sub>Mandatory</sub> - If you already have an active bot chat, just set this    parameter to point to your reference, otherwise, set the provided instance with a [`BotAccount`]({{'/docs/chat-configuration/chat-account/bot-account' | relative_url}}).
+    - `botChat`<sub>Mandatory</sub> - In case the app already usesan active bot chat, set this parameter to point to your reference. If not, set the provided instance with a [`BotAccount`]({{'/docs/chat-configuration/chat-account/bot-account' | relative_url}}).
     
       ```kotlin
       val botViewModel = ... // Obtain...
@@ -53,8 +53,8 @@ Suggestions will not be displayed while the device is on `Landscape mode`. Text 
       // or set the botViewModel.botChat, if there's already an active instance 
       // botViewModel.botChat = myBotChatInstance
       ```
-    - `uiConfig`<sub>Optional</sub> - Set UI properties to customize the view look as needed.
-    - `openingQuery`<sub>Optional</sub> - If configured, will automatically be inserted to the input field.
+    - `uiConfig`<sub>Optional</sub> - Set UI properties to customize the view's dispaly as needed.
+    - `openingQuery`<sub>Optional</sub> - If configured, it will automatically be displayed in the input field.
     - `onError`, `onSelection` and `onConversationIdUpdate`<sub>Optional</sub> - [Can be observed](#listening-to-events) in order to be updated with the component events. 
 
 
@@ -68,7 +68,7 @@ fragmentManager.beginTransaction()
 
 ### Listening to events
 {: mt-10}   
-Optional, set observers to the events you would like to be notified of.
+Optional, set observers for events you would like to get notifications on.
 
 ```kotlin
 val botViewModel =  ... // obtain 

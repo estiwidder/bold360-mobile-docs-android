@@ -19,20 +19,20 @@ nav_order: 1
 ---
 
 ## Overview  
-Response specific feedback, provides the tool to review specific content quality and relevancy.   
-When enabled, every AI response will be followed with a feedback UI element, as long as it valid for feedback submission.
+Feedback is a tool for reviewing user experience and also specific content quality and relevance.   
+When enabled, every chatbot response will be followed by a feedback UI element, as long as it valid for feedback submission.
 {: .overview }
 
 ---
 
 ## Instant feedback Configurations
-The feedback UI component is configurable, by bold360ai console configurations, and by SDK defined costomizations.
+To enable users to provide feedback, this capability needs to be enabled both in  bold360ai console for the knowledgbase, and also in the SDK configuration.
 
 ### Admin console configurations
 {: .mb-4 }
-- **Feature availability**   
+- **Feedback configuration**   
     {: .fs-4 .fw-300 }
-  Feedback feature can be truned on/off on the admin console per widget specific configurations to your account and knowledge base.
+  Refer to the feedback settings for widgets in the Bold360ai console.
 
   <details close markdown="block">
   <summary>Feedback status settings</summary>
@@ -42,7 +42,7 @@ The feedback UI component is configurable, by bold360ai console configurations, 
 
 - **Feedback display type** 
     {: .fs-4 .fw-300 }
-    There are 2 predefined display options for the feedback component, that can be selected on the admin console, textual and iconic.
+    There are two predefined feedback display options, that can be selected on the admin console: textual and iconic.
 
     <details close markdown="block">
     <summary>Feedback display type settings</summary>
@@ -50,7 +50,7 @@ The feedback UI component is configurable, by bold360ai console configurations, 
     {: image-70 }
     </details> {: .mb-4 }
 
-    The Bold SDK provides default implementations for both types.
+    Bold SDK provides default implementations for both types.
 
 
     Iconic feedback:
@@ -71,7 +71,7 @@ The feedback UI component is configurable, by bold360ai console configurations, 
     {: .table-trans}
 
 - Textual configurations
-  On the admin console you can configure the messages content that are presented to the user over feedback flow. 
+  On the Bold360ai console enbles to customize the messages to  be dislayed the user. 
 
   ![]({{'/assets/images/feedback-texts.png' | relative_url}})
   {: image-70}
@@ -79,8 +79,8 @@ The feedback UI component is configurable, by bold360ai console configurations, 
 ---
 
 ### SDK configurations
-The instant feedback display can be override by the app, via `ChatUIProvider`.
-1. Create your custom feedback view. Make it implement `FeedbackUIAdapter` interface.
+The instant feedback display can be overriden by the app, via `ChatUIProvider`.
+1. Create custom feedback view by implementing the  `FeedbackUIAdapter` interface.
     ```kotlin
     class CustomIconFeedbackView : LineaLayout, FeedbackUIAdapter {
         ...
@@ -90,7 +90,7 @@ The instant feedback display can be override by the app, via `ChatUIProvider`.
         ...
     }
     ```
-2. Create implementation for `FeedbackFactory`, that creates your custom feedback view.
+2. Implement the `FeedbackFactory`, which createsthe custom feedback view.
     ```kotlin
     class MyCustomFeedbackFactory : FeedbackFactory{
         override fun create(context: Context, feedbackDisplayType: Int): FeedbackUIAdapter {
@@ -101,7 +101,7 @@ The instant feedback display can be override by the app, via `ChatUIProvider`.
         }
     }
     ```
-3. Set feedback provider factory to point to your implementation, in the `ChatUIProvider`. 
+3. Set the feedback provider factory to point to your implementation, in the `ChatUIProvider`. 
     ```kotlin
     val chatUIProvider = ChatUIProvider().apply{
         chatElementsUIProvider.incomingUIProvider.feedbackUIProvider.overrideFactory = MyCustomFeedbackFactory

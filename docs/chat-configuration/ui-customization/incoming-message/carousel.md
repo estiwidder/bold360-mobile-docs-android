@@ -17,32 +17,34 @@ nav_exclude: true
 
 ---
 
-## Overview
-Displays a "carousel" typed incoming response. 
-As a regular incoming message, carousel has a message section with a timestamp and avatar, and the quick options and channels at the bottom. The carousel provides the ability to display multiple related answers to a user query in a horizontal scrollable structure.
+## Overview 
+Displays the response as a carousel of items. 
+The carousel, just like a regular incoming message, has a message section with a timestamp and avatar, and the quick options and channels at the bottom. The carousel provides the ability to display multiple related answers to a user query in a horizontal scrollable structure.
 {: .overview}
 ![]({{'/assets/images/carousel.png' | relative_url}})
 {: .image-40}
 
 
 ## Carousel Item
-Each item in the carousel consists of 3 sections: 
-- **Image** - If not configured, a placeholder default image will be displayed.
-    Can be configured with a url link. <sub>Optional</sub>.
-- **Info** - Title <sub>Mandatory</sub> and a subtitle <sub>Optional</sub> 
-- **Options** - Item options <sub>Optional</sub>.
+Each corousel item consists of three display properties: 
+- **Image** <sub>(optional)</sub> - THe image can be configured with a URL link. If not image is set, a default image will be displayed.     
+- **Info** <sub>(optional)</sub> - Title <sub>(mandatory)</sub> and a subtitle for the item displayed.
+COMMENT: HOW CAN THIS BE OPTIONAL IS THE TITL IS MANDATORY? 
+- **Options** <sub>(optional)</sub> - Item options .
 
 ---
 
-## UI configurations
-Carousel UI can be configured, by overriding `CarouselItemsUIProvider.configure` method and/or `CarouselItemsUIProvider.customize` method for [dynamic data related customizations]({{'/docs/chat-configuration/ui-cutomization/how-it-works#customize' | relative_url}}).   
-Available configuration proprties can be viewed on `CarouselItemsUIAdapter`
+## Carousel UI configurations
+The carousel UI can be customized, by overriding the `CarouselItemsUIProvider.configure` method and/or the `CarouselItemsUIProvider.customize` method for [dynamic data related customizations]({{'/docs/chat-configuration/ui-cutomization/how-it-works#customize' | relative_url}}).   
+The available configuration proprties can be fund in the `CarouselItemsUIAdapter`.
 
 ### General item configurations
-- Use `CarouselItemsUIAdapter.setCardStyle` method to configure the carousel item look. 
-  > The carousel items display can be configured to have a card like look which has elevation or be flat, with or without rounded corners. 
+- Use the `CarouselItemsUIAdapter.setCardStyle` method to configure the carousel item display. 
+  > The carousel items display configurations are:
+  -  Border-  card like or flat
+  - Corners - rounded or squre 
 
-  >_**Notice**, If a card style display is configured, items background should not be transparent!_
+  >_**Note:**, In case a card style display is selected, the item's background should not be set to transparent_
 
 - Carousel items sections (info, image and options), display order, can be configured with `CarouselItemsUIAdapter.setInfoTextAlignment`, defaults to `CarouselItemConfiguration.ItemInfoAlignment.AlignBelowThumb` 
 
@@ -51,20 +53,25 @@ Available configuration proprties can be viewed on `CarouselItemsUIAdapter`
 
 
 ### Info section
-Info section contains a title and a sub-title, which are configured with minimum line number of 1 and 2 lines respectfully.   
-Minimun height for this section will be calulated according to those values.
+The info section contains a title and a sub-title. The numbr of lines for each is configurable with the following methods:
+-  `setInfoTitleMinLines` - minumum is one line
+- `setInfoSubTitleMinLines` - minimum are two lines
+
 The sub-title height is flexible and may stretch to the maximum available item height.
 
-Minimum line numbers can be configured with `setInfoTitleMinLines` and `setInfoSubTitleMinLines` methods.
+The Minimun height for this section will be calulated according to the definenumber of lines described above.  
+
 
 ![]({{'/assets/images/carousel-info.png' | relative_url}})
 {: .image-40}
 
-> Checkout other configurations for the info section on `CarouselItemsUIAdapter` prefixed with **setInfo...**.
+> Additional info section configurationscan be found in the  `CarouselItemsUIAdapter` prefixed with **setInfo...**.
+
+##COMMENT - CAN WE PROVIDE THE LIST HERE?
 
 ### Options section
 Item options are contained in a non-scrollable vertical order layout.  
-The options, text alignment and look are configurable.
+The options, text alignment and display are configurable.
 
 All options are configured to the same line count, defaults to 1 line.   
 Use `CarouselItemsContainer.setOptionsLineCount` method to change the line count.
@@ -72,14 +79,14 @@ Use `CarouselItemsContainer.setOptionsLineCount` method to change the line count
 > Carousel view height is being calculated according to the item with the maximum number of options.
 
 ### Image section
-Image size is constant. 
-If a link is configured for the image, it will be passed to the hosting App, on user press action, for further handling, via [`ChatEventListener.onUrlLinkSelected` implementation]({{'/docs/chat-configuration/tracking-events/events-and-notifications#listening-to-url-navigation' | relative_url}}).
+The image size is constant. 
+If a link is provided for the image, it will be passed to the hosting app upon click for further handling, via the  [`ChatEventListener.onUrlLinkSelected` implementation]({{'/docs/chat-configuration/tracking-events/events-and-notifications#listening-to-url-navigation' | relative_url}}).
 
 ---
 
 ## UI override
-Carousel list section can be override by overriding `CarouselItemsUIProvider.overrideFactory` property.    
-A customed implementation of `CarouselItemsAdapter` should be provided by the overriding factory.
+The Carousel list section can be overriden by setting the  `CarouselItemsUIProvider.overrideFactory` property.    
+A customed implementation of `CarouselItemsAdapter` should be provided by the overriding factory, as shown below.
 
 ```kotlin
 ChatUIProvider(context).apply {

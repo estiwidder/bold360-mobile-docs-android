@@ -19,9 +19,9 @@ nav_order: 9
 ---
 
 ## Overview
-In the chat there are 2 main time related elements:
+In the chat there are two main time related elements:
 
-- **The dates notifications in the chat** - grouping elements of the same date messages 
+- **Date notifications in the chat** - grouping messages and elements from a specific date 
 
 ![]({{'/assets/images/chat_datestamp.png' | relative_url}})
 {: .image-40}
@@ -34,8 +34,8 @@ In the chat there are 2 main time related elements:
 
 ---
 
-## Datestamp display
-In order to change default datestamp display:
+## Datestamp display customization
+Refer to the methods to change the default date display:
 1. Implement `DatesampFormatFactory`
 2. Pass that implementation to the ConversationSettings using `ConversationSettings.datestamp` method.
 
@@ -57,21 +57,22 @@ In order to change default datestamp display:
     ```
 
 ### Datestamp display factories
-The SDK provides 2 predefined factories: 
+The SDK provides two predefined datestamp factories: 
 
 - SimpleDatestampFormatFactory
 {: .text-blue-300}   
-Uses the pattern `"EEE, d MMM, yyyy"` to display dates
+Uses the pattern `"EEE, d MMM, yyyy"` to display dates.
 
 {: .mt-6}
 - FriendlyDatestampFormatFactory <sub>_default_</sub>   
 {: .text-blue-300}   
-Provides more common display, using `today`, `yesterday` phrases.
+Provides a more common display, using `today`, `yesterday` phrases.
 
 ---
 
-## Timestamp display
-There are 2 ways of setting a new look to the timestamp display.
+## Timestamp display customization
+
+Refer to the methods to to change the default time display:
 
 1. Configure by [chat settings]({{'/docs/chat-configuration/chat-settings' | relative_url}})
     {: .strong-sub-title}
@@ -93,7 +94,7 @@ There are 2 ways of setting a new look to the timestamp display.
 2. Overriding [configure/customize](./how-it-works)
     {: .strong-sub-title}
 
-    Overriding the configure and/or customize methods and set the desired look for the timestamp on `ChatUIProvider.chatElementsUIProvider.`[incomingUIProvider](./incoming-message) and/or `ChatUIProvider.chatElementsUIProvider.`[outgoingUIProvider](./outgoing-message).   
+    Overriding the configure and/or customize methods and set the desired display for the timestamp on `ChatUIProvider.chatElementsUIProvider.`[incomingUIProvider](./incoming-message) and/or `ChatUIProvider.chatElementsUIProvider.`[outgoingUIProvider](./outgoing-message).   
       
     ```kotlin
     val chatUI = ChatUIProvider(context).apply {

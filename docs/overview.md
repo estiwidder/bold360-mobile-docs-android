@@ -23,7 +23,7 @@ Native SDK ensures usability by native applications and benefits from the operat
 
 ## Features
 Create and integrate AI and live chats to run under your App.
-Customize your chat look to meet your need.
+Customize your chat display to meet your need.
 
 ## Intended Audience
 This guide assumes that you have the necessary android development skills to build and compile advanced applications using Android Studio.  

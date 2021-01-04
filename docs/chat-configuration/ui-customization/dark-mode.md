@@ -12,7 +12,7 @@ nav_order: 11
 _Currently, **dark mode** is not formally being supported by the SDK._
 
 ### How to apply Dark mode to your Chat
-In order to apply dark theme to your chat, you can define overriding and dark mode resources additions, that will replace the resources used by the SDK.
+To apply dark theme to your chat, you can define overriding and dark mode resources to replace the resources used by the SDK.
 
 - #### Adding night mode resources
   Night mode resources should be located in a night mode dedicated folder.

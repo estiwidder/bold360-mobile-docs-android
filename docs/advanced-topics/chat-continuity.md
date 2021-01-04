@@ -7,6 +7,7 @@ has_toc: false
 ---
 
 # Chat Continuity {{site.data.vars.need-work}}
+## COMMENT: THIS APPEARS IN OTHER PLACES AS WELL. WE SHOULD HAVE A SINGLE INSTANCE FOR EAE OF MANAGEMENT. I DID NOT REVIEW THIS ONE.
 {: .no_toc }
 
 ## Table of contents

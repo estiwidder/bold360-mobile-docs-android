@@ -18,27 +18,27 @@ nav_order: 9
 ---
 
 ## Overview
-The SDK provides an upload mechanism, but enables you to use your own.   
+Files can be uploaded to the chat either by the SDK uplaod mechanism ,or by a proprietary mechanism.   
 {: .overview}
 
-Follow the next steps to integrate upload functionality to your chat:
+Follow the next steps to integrate the upload ability onto your chat:
 
-> If you don't use the SDK for chat ui creation, but want to use the provided uploader mechanism, go to [step 2.](#Use-SDK's-provided-uploader)
+> If you are not using the SDK for the chat ui creation, but still want to use the SDK default file upload mechanism, go to [step 2.](#Use-SDK's-provided-uploader)
 
-### 1.  Define your file upload trigger   
-The UI component the user will use to trigger the upload. 
+## 1.  Define the file upload trigger   
+This defines the UI component to be used by the user to trigger file upload. 
 
-- ### Use SDK provided trigger   
-  The SDK provides an upload trigger (attach icon) which will be positioned inside the input field.  In order to be notified when the user had activated the trigger in order to do some uploads, you need to implement `onUploadFileRequest` in `ChatEventListener`.
+- ### Default file upload trigger by the SDK   
+  The SDK provides an upload trigger (attach icon) which will be displayed within input field. To be notified when a user activates the trigger toupload files, there is a  need to implement `onUploadFileRequest` in the  `ChatEventListener`.
   ```kotlin
     override fun onUploadFileRequest(){
-        // user wants to upload content to the agent
+        // The user triggers an upload content for the agent
     }
   ```
 
-  - Customize upload icon: 
+  - Customizing the upload icon: 
   {: .light-title}
-    via `ChatInputUIProvider` config object.
+    through the `ChatInputUIProvider` configuration object.
 
     ```kotlin
     val chatController = ChatController.Builder(this).apply {
@@ -50,13 +50,13 @@ The UI component the user will use to trigger the upload.
     }
     ```
 
-- ### Use your own trigger  
-  - Apply your own upload UI component.   
-    Insure that upload feature is enabled, before you display the UI to the user:
+- ### Proprietary file upload trigger  
+  - Apply a proprietary file upload UI component.   
+    Ensure that the upload feature is enabled, before displaying the UI to the user:
     ```kotlin
     chatController.isEnabled(ChatFeatures.FileUpload);
     ```
-    > Learn how to enable/disable file transfer on admin console [here]({{'/assets/images/console-upload.png' | relative_url}})
+    > Llearn more on how to enable/disable the file transfer on the admin console [here]({{'/assets/images/console-upload.png' | relative_url}})
 
   - Hide the SDKs upload icon:
 
@@ -71,25 +71,38 @@ The UI component the user will use to trigger the upload.
     ```
 
 
-## 2. Choose an upload provider
+## 2. Choose the file upload provider
 
 - ### Use SDK's provided uploader
 
-  - Create a `FileUploadInfo` object, for every content you need to upload.
+  - Create a `FileUploadInfo` object, for each content to be uploaded.
 
     ```kotlin
-    //... user selected the file to upload
+    //... user selected the file to be uploaded
     val uploadInfo = FileUploadInfo().apply{
         type = ... // as defined in @FileType
         name = ... // can differ from the actual file name
         filePath = ... // actual selected file path
-        content = file.readBytes()... // if was not provided on the constructor
+        content = file.readBytes()... // if it was not provided on the constructor
     }
     ```
      
-  - Activate the upload:
+## 3. Activate the file upload mechanism
     
-    1. When using the ChatController 
+      When using the SDK's provided uploader
+
+        ```kotlin
+        BoldLiveUploader().upload(uploadInfo, AccountDetails(...)) { uploadResults ->
+            //.... got UploadResults and do whatever
+            uploadsResults.error?.run{
+                Log.e(TAG, "Got an error on ${uploadResults.data.name} 
+                                    file upload: ${uploadsResults.error}")
+                ...
+            }
+        }
+    
+    
+    When using the ChatController 
     
         ```kotlin
         chatController.uploadFile(uploadInfo) { uploadResults ->
@@ -101,22 +114,10 @@ The UI component the user will use to trigger the upload.
             }
         }
         ```
-    Upload results are passed over the provided callback.
-
-	2. When using the Uploader
-        ```kotlin
-        BoldLiveUploader().upload(uploadInfo, AccountDetails(...)) { uploadResults ->
-            //.... got UploadResults and do whatever
-            uploadsResults.error?.run{
-                Log.e(TAG, "Got an error on ${uploadResults.data.name} 
-                                    file upload: ${uploadsResults.error}")
-                ...
-            }
-        }
-        ```
+    Upload results are passed over the provided callback.    ```
 
 
-- ### Use your own uploader
+- ### Use a proprietary file upload mechanism 
 
     - When user triggers an upload and chooses the content to be uploaded, upload that content with your uploader.
     - Pass an UploadEvent to the `chatController` with the upload results, in order to have the upload bubble in the chat.
@@ -132,10 +133,11 @@ The UI component the user will use to trigger the upload.
       ```
 
 ## Extra
+##  COMMENT: WHY IS THIS EXTRA? IS THIS HEADER NEEDED?
 
-### Listening to upload notifications
+### Listening to file upload notifications
 
-One can listen to files upload events via the `ChatController`, by registering to the available uploads notifications he needs.
+The app can listen to file upload events via the `ChatController`, by registering to the available uploads notifications needed.
 
 ```kotlin
 chatController.subscribeNotifications(notifiableImpl:Notifiable,
@@ -171,8 +173,8 @@ chatController.subscribeNotifications(notifiableImpl:Notifiable,
 ```
 ## <a name="uicustom"/>UI Customization
 
-- #### Customizing uploads progress indication
-   The SDK provides uploads propress indication bar   
+- #### Customizing the upload progress indication
+   The SDK provides an upload propress indication bar   
 
     ![]({{'assets/images/uploads_bar.png' | relative_url}})
 
@@ -187,28 +189,28 @@ chatController.subscribeNotifications(notifiableImpl:Notifiable,
         }
         ```
 
-    - The uploads bar can be overrided with your own implementation, via `ChatUIProvider.uploadsCmpUIProvider.overrideFactory`   
+    - The uploads bar can be overriden by a proprietary implementation, using `ChatUIProvider.uploadsCmpUIProvider.overrideFactory`   
       ```kotlin
       chatUIProvider.uploadsCmpUIProvider.overrideFactory =
             object: UploadsbarCmpUIProvider.UploadFactory {
                 override fun create(context: Context): UploadsCmpAdapter {
-                    return .... // create customed component
+                    return .... // created custom component
                 }
             }
       ```
       
-    - In order to notify the SDK that the component done with the uploads display and should be removed, pass `CmpEvent` to the `ChatController`:
+    - In order to notify the SDK that the component is done with the uploadsand therefore the bar should be removed, pass the `CmpEvent` to the `ChatController`:
 
         ```kotlin
         chatController.handleEvent(CmpEvent.EventName,
                         CmpEvent(ComponentType.UploadsStripCmp, CmpEvent.Idle))
         ```
-      > Customizations that were configured with `UploadsCmpUIProvider.configure` will be applied on your customed component as well.
+      > Customizations that were configured with `UploadsCmpUIProvider.configure` will be applied on proprietary component as well.
 
 - #### Customizing upload outgoing bubble
-  Same as regular [outgoing bubble customizations]({{'/docs/chat-configuration/ui-customization/how-it-works' | relative_url}}).
+  This customixation is the same customization done to a regular outgoing bubble  [outgoing bubble customizations]({{'/docs/chat-configuration/ui-customization/how-it-works' | relative_url}}).
 
-  - ##### Customizing upload content type images
-    Provided icons can be override by appying new drawables resources in the app resources with matching reasources ids.   
+  - ##### Customizing the upload file images
+    Default icons can be overriden by appying new drawables resources in the app resources with matching reasources ids.   
     > picture_ico, default_ico, excel_ico, archive_ico
 ---
